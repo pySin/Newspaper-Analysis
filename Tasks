@@ -1,5 +1,11 @@
 Newspaper Analysis
 
+Newspapers to Analyse:
+
+Neutral = Google News, BBC
+Left: The guardian, Daily Mirror, The independent
+Right: The Daily Telegraph, Daily Express, Daily Mail
+
 1. Scraping 
 	a) website
 	b) article URL
