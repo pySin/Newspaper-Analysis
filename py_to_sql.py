@@ -34,7 +34,7 @@ def create_mysql_table():
     
     print(list_to_mysql) # check how the string looks
 
-    conn = mysql.connector.connect(user = 'root', password = 'dance',
+    conn = mysql.connector.connect(user = 'root', password = 'your_password',
                                    host = 'localhost')
     cursor = conn.cursor()
     cursor.execute('USE info_3;')
