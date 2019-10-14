@@ -68,7 +68,7 @@ def populate_mysql_table(text_file_name):
     
     print(list_to_mysql)
 
-    conn = mysql.connector.connect(user = 'root', password = 'dance',
+    conn = mysql.connector.connect(user = 'root', password = 'your_password',
                                    host = 'localhost')
     cursor = conn.cursor()
     cursor.execute('USE info_3;')
