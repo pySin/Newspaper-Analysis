@@ -77,6 +77,42 @@ def populate_mysql_table(text_file_name):
     conn.commit()
     conn.close()
 
+# populate mysql table 2
+
+def populate_mysql_table_2(text_file_name):
+    # populate with word's percentage in the whole text
+    table_name = 'news_'+str(datetime.date.today())
+
+    most_pop_100_pct = words_frequencies.word_percent(text_file_name)
+    most_pop_20_pct = most_pop_100_pct[0:20]
+
+    column_names = []
+    column_values_2 = []
+
+    for item in most_pop_20_pct:
+        column_names.append(item[1]+'_') # using underscore to avoid the words
+        column_values_2.append(item[0]) # reserved for MySQL
+
+    list_to_mysql_p = """INSERT INTO %s(id, %s)
+                       VALUES(NULL, %s);""" % (table_name, column_names,
+                                               column_values_2)
+
+    list_to_mysql_p_2 = list_to_mysql_p.replace('[', '')
+    list_to_mysql_p_3 = list_to_mysql_p_2.replace(']', '')
+    list_to_mysql_p_4 = list_to_mysql_p_3.replace('-', '')
+    list_to_mysql_sp = list_to_mysql_p_4.replace('\'', '')
+
+    print(list_to_mysql_sp)
+    conn = mysql.connector.connect(user = 'root', password = 'dance',
+                                   host = 'localhost')
+    cursor = conn.cursor()
+    cursor.execute('USE info_3;')    
+    cursor.execute(list_to_mysql_sp)
+
+    conn.commit()
+    conn.close()    
+    
+    
 def multiple_files():
     os.chdir('today\'s_articles')
     folder_files = os.listdir()
@@ -84,7 +120,7 @@ def multiple_files():
     for text_file_name in folder_files:
         if text_file_name[-3:] == 'txt':
             populate_mysql_table(text_file_name)
-
+            populate_mysql_table_2(text_file_name)
 
 
 
