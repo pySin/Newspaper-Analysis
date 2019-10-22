@@ -2,6 +2,7 @@
 
 import mysql.connector
 import words_frequencies
+import text_lines_to_list
 import datetime
 import os
 
@@ -23,6 +24,9 @@ def create_mysql_table():
 
     # create a string to be interpreted by the MySQL server
     list_to_mysql_str = """CREATE TABLE %s(
+                       dates VARCHAR(100),
+                       website VARCHAR(100),
+                       title VARCHAR(255)
                        id INT AUTO_INCREMENT PRIMARY KEY,
                        %s);""" % (table_name, column_names)
 
@@ -47,6 +51,12 @@ def create_mysql_table():
 def populate_mysql_table(text_file_name):
     table_name = 'news_'+str(datetime.date.today())
 
+    # Get the website and the table
+    get_lines = text_lines_to_list.r_lines(text_file_name)
+    website = get_lines[1]
+    title = get_lines[2]
+    
+    # populate by times of usage
     most_pop_100 = words_frequencies.word_usage(text_file_name)
     most_pop_20 = most_pop_100[0:20]
 
@@ -57,8 +67,8 @@ def populate_mysql_table(text_file_name):
         column_names.append(item[1]+'_') # using underscore to avoid the words
         column_values.append(item[0]) # reserved for MySQL
 
-    list_to_mysql_str = """INSERT INTO %s(id, %s)
-                       VALUES(NULL, %s);""" % (table_name, column_names,
+    list_to_mysql_str = """INSERT INTO %s(id, dates, website, title, %s)
+                       VALUES(NULL, CURDATE(), "%s", "%s" %s);""" % (table_name, column_names,
                                                column_values)
 
     list_to_mysql_str_2 = list_to_mysql_str.replace('[', '')
@@ -80,6 +90,12 @@ def populate_mysql_table(text_file_name):
 # populate mysql table 2
 
 def populate_mysql_table_2(text_file_name):
+    # get the website and the title
+    get_lines = text_lines_to_list.r_lines(text_file_name)
+    website = get_lines[1]
+    title = get_lines[2]
+    
+    
     # populate with word's percentage in the whole text
     table_name = 'news_'+str(datetime.date.today())
 
@@ -93,8 +109,8 @@ def populate_mysql_table_2(text_file_name):
         column_names.append(item[1]+'_') # using underscore to avoid the words
         column_values_2.append(item[0]) # reserved for MySQL
 
-    list_to_mysql_p = """INSERT INTO %s(id, %s)
-                       VALUES(NULL, %s);""" % (table_name, column_names,
+    list_to_mysql_p = """INSERT INTO %s(id, dates, website, title, %s)
+                       VALUES(NULL, CURDATE(), "%s", "%s $percent", %s);""" % (table_name, column_names, website, title,
                                                column_values_2)
 
     list_to_mysql_p_2 = list_to_mysql_p.replace('[', '')
