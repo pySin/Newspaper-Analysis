@@ -1,5 +1,6 @@
 # Newspaper-Analysis
-Scraping articles from news websites and looking for language patterns in the text. 
+Scraping articles from news websites and looking for language patterns in the text.
+
 Recognise narrative styles and create profiles for the most popular styles.
 
 Newspapers to Analyse:
