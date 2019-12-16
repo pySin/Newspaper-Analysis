@@ -6,8 +6,11 @@ Newspapers to Analyse:
 Analyse newspapers by their political inclination
 
 Neutral = Google News, BBC
+
 Left: The guardian, Daily Mirror, The independent
+
 Right: The Daily Telegraph, Daily Express, Daily Mail
+
 
 1. Scraping 
 	a) website
