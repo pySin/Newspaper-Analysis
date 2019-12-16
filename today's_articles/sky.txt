@@ -1,0 +1,35 @@
+21/10/2019
+
+https://www.skynews.co.uk/
+
+Boris Jonson had a short walk in the park
+
+
+ou can precede the SELECT by IGNORE or REPLACE to indicate how to handle rows that duplicate unique key values. With IGNORE, rows that duplicate an existing row on a unique key value are discarded. With REPLACE, new rows replace rows that have the same unique key value. If neither IGNORE nor REPLACE is specified, duplicate unique key values result in an error.
+
+Because the ordering of the rows in the underlying SELECT statements cannot always be determined, CREATE TABLE ... IGNORE SELECT and CREATE TABLE ... REPLACE SELECT statements in MySQL 5.5.18 and later are flagged as unsafe for statement-based replication. With this change, such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using MIXED mode. See also Section 17.1.2.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”.
+
+CREATE TABLE ... SELECT does not automatically create any indexes for you. This is done intentionally to make the statement as flexible as possible. If you want to have indexes in the created table, you should specify these before the SELECT statement:
+
+mysql> CREATE TABLE bar (UNIQUE (n)) SELECT n FROM foo;
+
+Some conversion of data types might occur. For example, the AUTO_INCREMENT attribute is not preserved, and VARCHAR columns can become CHAR columns. Retrained attributes are NULL (or NOT NULL) and, for those columns that have them, CHARACTER SET, COLLATION, COMMENT, and the DEFAULT clause.
+
+When creating a table with CREATE TABLE ... SELECT, make sure to alias any function calls or expressions in the query. If you do not, the CREATE statement might fail or result in undesirable column names.
+
+CREATE TABLE artists_and_works
+  SELECT artist.name, COUNT(work.artist_id) AS number_of_works
+  FROM artist LEFT JOIN work ON artist.id = work.artist_id
+  GROUP BY artist.id;
+
+You can also explicitly specify the data type for a column in the created table:
+
+CREATE TABLE foo (a TINYINT NOT NULL) SELECT b+1 AS a FROM bar;
+
+For CREATE TABLE ... SELECT, if IF NOT EXISTS is given and the destination table already exists, the result is version dependent. Before MySQL 5.5.6, MySQL handles the statement as follows:
+
+    The table definition given in the CREATE TABLE part is ignored. No error occurs, even if the definition does not match that of the existing table. MySQL attempts to insert the rows from the SELECT part anyway.
+
+    If there is a mismatch between the number of columns in the table and the number of columns produced by the SELECT part, the selected values are assigned to the rightmost columns. For example, if the table contains n columns and the SELECT produces m columns, where m < n, the selected values are assigned to the m rightmost columns in the table. Each of the initial n - m columns is assigned its default value, either that specified explicitly in the column definition or the implicit column data type default if the definition contains no default. If the SELECT part produces too many columns (m > n), an error occurs.
+
+    If strict SQL mode is enabled and any of these initial columns do not have an explicit default value, the statement fails with an 
