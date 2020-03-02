@@ -24,7 +24,7 @@ Right: The Daily Telegraph, Daily Express, Daily Mail
 ###	d) article content
 ###	e) separate paragraphs
 
-##2. Text analysis
+## 2. Text analysis
 ###	a) word frequency (excluding prepositions and most common words)
 ###	b) parts of speech analysis
 ###		b.a) adjectives analysis
@@ -44,6 +44,6 @@ Right: The Daily Telegraph, Daily Express, Daily Mail
 ###		b.h) verbs analysis
 ####			b.h.a) verbs frequencies
 
-##3. Transfering the data into a database or tabular data files(CSV, excel)
+## 3. Transfering the data into a database or tabular data files(CSV, excel)
 
 We are open to any new tasks that might be interesting to you! 
