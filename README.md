@@ -46,4 +46,11 @@ Right: The Daily Telegraph, Daily Express, Daily Mail
 
 ## 3. Transfering the data into a database or tabular data files(CSV, excel)
 
+# Setup
+
+1. Create 2 sub-folders in your main folder. The furst folder(today's_articles) is for the articles that we'll analyse. The second folder(archives) is for the articles we have already analysed. Place some .txt files with articles in "today's_articles" for analysis.
+2. Set MySQL community or corporate server.
+3. In 'py_to_sql.py' file the following expression - "cursor.execute('USE info_3;')" - is used 3 times. 'info_3' is the MySQL database where the new table will be created and populated with data. Change the name 'info_3' with your database name in all 3 places.
+4. Run 'function_call.py' file.
+
 We are open to any new tasks that might be interesting to you! 
