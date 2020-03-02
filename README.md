@@ -1,6 +1,5 @@
-# Newspaper-Analysis
+# Introduction
 Scraping articles from news websites and looking for language patterns in the text.
-
 Recognise narrative styles and create profiles for the most popular styles.
 
 Newspapers to Analyse:
@@ -12,7 +11,12 @@ Left: The guardian, Daily Mirror, The independent
 
 Right: The Daily Telegraph, Daily Express, Daily Mail
 
+# Technologies
 
+1. Python - mysql.connector, re, datetime, os
+2. MySQL
+
+# Tasks
 1. Scraping 
 	a) website
 	b) article URL
