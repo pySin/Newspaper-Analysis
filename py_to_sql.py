@@ -38,7 +38,7 @@ def create_mysql_table():
     
     print(list_to_mysql) # check how the string looks
 
-    conn = mysql.connector.connect(user = 'root', password = 'dance',
+    conn = mysql.connector.connect(user = 'root', password = 'your_password',
                                    host = 'localhost')
     cursor = conn.cursor()
     cursor.execute('USE info_3;')
@@ -79,7 +79,7 @@ def populate_mysql_table(text_file_name):
 
     print(list_to_mysql)
     
-    conn = mysql.connector.connect(user = 'root', password = 'dance',
+    conn = mysql.connector.connect(user = 'root', password = 'your_password',
                                    host = 'localhost')
     cursor = conn.cursor()
     cursor.execute('USE info_3;')
@@ -121,7 +121,7 @@ def populate_mysql_table_2(text_file_name):
     list_to_mysql_sp = list_to_mysql_p_4.replace('\'', '')
 
     print(list_to_mysql_sp)
-    conn = mysql.connector.connect(user = 'root', password = 'dance',
+    conn = mysql.connector.connect(user = 'root', password = 'your_password',
                                    host = 'localhost')
     cursor = conn.cursor()
     cursor.execute('USE info_3;')    
